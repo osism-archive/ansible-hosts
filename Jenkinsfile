@@ -14,37 +14,16 @@ node {
     }
 
     stage('Test 2.2') {
-      configFileProvider([configFile(fileId: env.OPENRCFILEID, variable: 'OPENRCFILE'),
-                          configFile(fileId: env.DOCKERFILEID, variable: 'DOCKERFILE'),
-                          configFile(fileId: env.MOLECULEVARSFILEID, variable: 'MOLECULEVARSFILE')]) {
-        withEnv(["ANSIBLEVERSION=22"]) {
-          sh 'scripts/test.sh'
-        }
-      }
+      sh 'tox -e ansible22'
     }
 
     stage('Test 2.3') {
-      configFileProvider([configFile(fileId: env.OPENRCFILEID, variable: 'OPENRCFILE'),
-                          configFile(fileId: env.DOCKERFILEID, variable: 'DOCKERFILE'),
-                          configFile(fileId: env.MOLECULEVARSFILEID, variable: 'MOLECULEVARSFILE')]) {
-        withEnv(["ANSIBLEVERSION=23"]) {
-          sh 'scripts/test.sh'
-        }
-      }
-    }
-
-    stage('Destroy') {
-      configFileProvider([configFile(fileId: env.OPENRCFILEID, variable: 'OPENRCFILE')]) {
-        sh 'scripts/destroy.sh'
-      }
+      sh 'tox -e ansible23'
     }
   }
 
   catch (err) {
-    configFileProvider([configFile(fileId: env.OPENRCFILEID, variable: 'OPENRCFILE')]) {
-      sh 'scripts/destroy.sh'
-    }
     currentBuild.result = "FAILURE"
-      throw err
+    throw err
   }
 }

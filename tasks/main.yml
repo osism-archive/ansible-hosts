@@ -2,7 +2,7 @@
 - name: Copy /etc/hosts file
   template:
     src: hosts.j2
-    dest: /etc/hosts
+    dest: "{{ hosts_file }}"
     owner: root
     group: root
     mode: 0644
