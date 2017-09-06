@@ -6,9 +6,9 @@ galaxy_info:
   license: Apache License 2.0
   min_ansible_version: 2.2
   platforms:
-  - name: Ubuntu
-    versions:
-    - xenial
+    - name: Ubuntu
+      versions:
+        - xenial
   galaxy_tags:
-  - system
+    - system
   dependencies: []

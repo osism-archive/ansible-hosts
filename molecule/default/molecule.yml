@@ -1,0 +1,28 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/default/yamllint.yml
+platforms:
+  - name: molecule-ubuntu-hosts
+    image: ubuntu
+    image_version: 16.04
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  inventory:
+    host_vars:
+      molecule-ubuntu-hosts:
+        # NOTE: workaround for https://github.com/moby/moby/issues/22281
+        hosts_file: /etc/hosts.molecule
+        management_interface: lo0
+        ansible_lo0:
+          ipv4:
+            address: 127.0.0.1
+scenario:
+  name: default

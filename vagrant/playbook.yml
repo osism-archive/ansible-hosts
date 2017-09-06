@@ -1,5 +1,3 @@
-# This file is subject to the terms and conditions defined in file 'LICENSE',
-# which is part of this repository.
 ---
 - name: Install python version 2 on ubuntu
   hosts: all
@@ -12,15 +10,15 @@
     changed_when: result.rc != 0
     become: true
 
-#- name: Playbook for preparations
-#  hosts: all
+#  - name: Playbook for preparations
+#    hosts: all
 #
-#  roles:
-#  - role: osism.docker
+#    roles:
+#      - role: osism.docker
 
 - name: Playbook for role testing
   hosts: all
   connection: paramiko
 
   roles:
-  - role: ../../ansible-hosts
+    - role: ../../ansible-hosts
