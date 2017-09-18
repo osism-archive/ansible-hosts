@@ -1,20 +1,19 @@
 ---
-- name: Install python version 2 on ubuntu
+- name: Install python version2
   hosts: all
   gather_facts: no
 
   tasks:
-  - name: Install python version 2 on ubuntu
+  - name: Install python version2
     raw: test -e /usr/bin/python || (test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal))
     register: result
     changed_when: result.rc != 0
     become: true
 
-#  - name: Playbook for preparations
-#    hosts: all
-#
-#    roles:
-#      - role: osism.docker
+- name: Playbook for preparations
+  hosts: all
+
+  roles: []
 
 - name: Playbook for role testing
   hosts: all

@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
     ubuntu.vm.synced_folder ".", "/vagrant", disabled: true
     ubuntu.vm.provision "ansible" do |ansible|
       ansible.playbook = "playbook.yml"
-      ansible.galaxy_role_file = '../test-requirements.yml'
+      ansible.galaxy_role_file = '../molecule/default/requirements.yml'
       ansible.host_vars = {
         "ubuntu" => {
           "management_interface" => "enp0s3"
