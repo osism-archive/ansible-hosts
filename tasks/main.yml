@@ -1,5 +1,10 @@
 ---
-- name: Copy /etc/hosts file
+- name: Get /etc/hosts file
+  slurp:
+    src: /etc/hosts
+  register: hosts
+
+- name: Copy initial /etc/hosts file
   template:
     src: hosts.j2
     dest: "{{ hosts_file }}"
@@ -7,3 +12,22 @@
     group: root
     mode: 0644
   become: true
+  when: "'osism.hosts' not in hosts['content']|b64decode"
+
+- name: Add hosts
+  blockinfile:
+    dest: /etc/hosts
+    block: |
+      {{ hostvars[item]['ansible_' + hostvars[item]['management_interface']]['ipv4']['address'] }} {{ item }} {{ item.split('.')[0] }}
+    marker: "# {mark} osism.hosts managed block {{ item }}"
+  become: true
+  with_items: "{{ groups.all }}"
+
+- name: Add additional hosts
+  blockinfile:
+    dest: /etc/hosts
+    block: |
+      {{ item.value }} {{ item.key }} {{ item.key.split('.')[0] }}
+    marker: "# {mark} osism.hosts managed block {{ item.key }}"
+  become: true
+  with_dict: "{{ hosts_additional_entries }}"
