@@ -21,7 +21,7 @@
       {{ hostvars[item]['ansible_' + hostvars[item]['management_interface']]['ipv4']['address'] }} {{ item }} {{ item.split('.')[0] }}
     marker: "# {mark} osism.hosts managed block {{ item }}"
   become: true
-  with_items: "{{ groups.all }}"
+  with_items: "{{ groups[hosts_group_name] }}"
 
 - name: Add additional hosts
   blockinfile:

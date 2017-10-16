@@ -1,4 +1,5 @@
 ---
 hosts_file: /etc/hosts
 hosts_additional_entries: {}
+hosts_group_name: all
 management_interface: eth0
