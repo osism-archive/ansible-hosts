@@ -1,7 +1,7 @@
 ---
 - name: Get /etc/hosts file
   slurp:
-    src: /etc/hosts
+    src: "{{ hosts_file }}"
   register: hosts
 
 - name: Copy initial /etc/hosts file
@@ -16,7 +16,7 @@
 
 - name: Add hosts
   blockinfile:
-    dest: /etc/hosts
+    dest: "{{ hosts_file }}"
     block: |
       {{ hostvars[item]['ansible_' + hostvars[item]['management_interface']]['ipv4']['address'] }} {{ item }} {{ item.split('.')[0] }}
     marker: "# {mark} osism.hosts managed block {{ item }}"
@@ -25,7 +25,7 @@
 
 - name: Add additional hosts
   blockinfile:
-    dest: /etc/hosts
+    dest: "{{ hosts_file }}"
     block: |
       {{ item.value }} {{ item.key }} {{ item.key.split('.')[0] }}
     marker: "# {mark} osism.hosts managed block {{ item.key }}"
