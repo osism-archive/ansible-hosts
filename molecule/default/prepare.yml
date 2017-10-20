@@ -1,0 +1,12 @@
+- name: Playbook for preparations
+  hosts: all
+
+  tasks:
+  - name: Create /etc/hosts.molecule file
+    file:
+      path: /etc/hosts.molecule
+      state: touch
+      owner: root
+      group: root
+      mode: 0644
+    become: true
