@@ -22,6 +22,7 @@
     marker: "# {mark} osism.hosts managed block {{ item }}"
   become: true
   with_items: "{{ groups[hosts_group_name] }}"
+  when: hostvars[item]['ansible_' + hostvars[item]['management_interface']] is defined
 
 - name: Add additional hosts
   blockinfile:
