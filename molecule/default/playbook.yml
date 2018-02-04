@@ -2,8 +2,5 @@
 - name: Playbook for role testing
   hosts: all
 
-  vars:
-    hosts_file: /etc/hosts.molecule
-
   roles:
     - role: ansible-hosts
