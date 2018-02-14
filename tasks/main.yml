@@ -23,6 +23,7 @@
   become: true
   with_items: "{{ groups[hosts_group_name] }}"
   when:
+    - hostvars[item] is defined
     - hostvars[item]['management_interface'] is defined
     - hostvars[item]['ansible_' + hostvars[item]['management_interface']] is defined
 
