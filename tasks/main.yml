@@ -21,7 +21,7 @@
       {{ hostvars[item]['ansible_' + hostvars[item]['management_interface']]['ipv4']['address'] }} {{ item }} {{ item.split('.')[0] }}
     marker: "# {mark} osism.hosts managed block {{ item }}"
   become: true
-  with_items: "{{ groups[hosts_group_name] }}"
+  with_items: "{{ groups[hosts_group_name]|default([]) }}"
   when:
     - hostvars[item] is defined
     - hostvars[item]['management_interface'] is defined
