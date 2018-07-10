@@ -108,6 +108,7 @@
         nics:
           - net-id: "{{ openstack_networks[0]['id'] }}"
         config_drive: yes
+        floating_ip_pools: "{{ nova.floating_ip_pool }}"
       register: server
       with_items: "{{ molecule_yml.platforms }}"
       async: 7200

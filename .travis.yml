@@ -15,12 +15,18 @@ install:
   - pip install -r test-requirements.txt
 
 env:
-  - TOX_ENV=ansible23
-  - TOX_ENV=ansible24
-  - TOX_ENV=ansible25
+  - TOX_ENV=ansible23 MOLECULE_IMAGE="Ubuntu 16.04 (20180628)"
+  - TOX_ENV=ansible24 MOLECULE_IMAGE="Ubuntu 16.04 (20180628)"
+  - TOX_ENV=ansible25 MOLECULE_IMAGE="Ubuntu 16.04 (20180628)"
+  - TOX_ENV=ansible23 MOLECULE_IMAGE="Ubuntu 18.04 (20180627)"
+  - TOX_ENV=ansible24 MOLECULE_IMAGE="Ubuntu 18.04 (20180627)"
+  - TOX_ENV=ansible25 MOLECULE_IMAGE="Ubuntu 18.04 (20180627)"
 
 script:
   - tox -e $TOX_ENV
+
+after_failure:
+  - tox -e destroy
 
 notifications:
   irc:
