@@ -30,8 +30,8 @@ neutron:
       cidr: 192.168.1.0/24
       enable_dhcp: true
       dns_nameservers:
-        - 8.8.8.8
-        - 8.8.4.4
+        - 9.9.9.9
+        - 149.112.112.112
   routers:
     - name: "molecule{{ lookup('env', 'TRAVIS_JOB_ID')|default('') }}"
       network_name: public
@@ -42,5 +42,6 @@ keypair_name: "molecule{{ lookup('env', 'TRAVIS_JOB_ID')|default('') }}"
 keypair_path: "{{ lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') }}/ssh_key"
 
 nova:
-  image: "Ubuntu 16.04 (Xenial Xerus)"
+  image: "{{ lookup('env', 'MOLECULE_IMAGE')|default('Ubuntu 16.04 (20180628)', true) }}"
   flavor: 1C-1GB-10GB
+  floating_ip_pool: public
