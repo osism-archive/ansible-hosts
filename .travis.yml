@@ -12,21 +12,10 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_e99be923bbf1_key -iv $encrypted_e99be923bbf1_iv -in molecule/default/clouds.yml.enc -out molecule/default/clouds.yml -d
 
 install:
-  - pip install -r test-requirements.txt
-
-env:
-  - TOX_ENV=ansible23 MOLECULE_IMAGE="Ubuntu 16.04 (20180628)"
-  - TOX_ENV=ansible24 MOLECULE_IMAGE="Ubuntu 16.04 (20180628)"
-  - TOX_ENV=ansible25 MOLECULE_IMAGE="Ubuntu 16.04 (20180628)"
-  - TOX_ENV=ansible23 MOLECULE_IMAGE="Ubuntu 18.04 (20180627)"
-  - TOX_ENV=ansible24 MOLECULE_IMAGE="Ubuntu 18.04 (20180627)"
-  - TOX_ENV=ansible25 MOLECULE_IMAGE="Ubuntu 18.04 (20180627)"
+  - pip install -r requirements.txt
 
 script:
-  - tox -e $TOX_ENV
-
-after_failure:
-  - tox -e destroy
+  - detox
 
 notifications:
   irc:
