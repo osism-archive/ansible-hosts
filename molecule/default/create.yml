@@ -58,7 +58,7 @@
     - name: Create molecule instance(s)
       os_server:
         cloud: molecule
-        name: "molecule{{ lookup('env', 'TRAVIS_JOB_ID')|default('') }}"
+        name: "{{ nova.name }}"
         image: "{{ nova.image_name }}"
         flavor: "{{ nova.flavor_name }}"
         security_groups:
