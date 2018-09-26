@@ -69,6 +69,7 @@
         config_drive: yes
         delete_fip: yes
         auto_ip: no
+        timeout: 360
       register: server
       with_items: "{{ molecule_yml.platforms }}"
       async: 7200
