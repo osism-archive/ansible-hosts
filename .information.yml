@@ -1,0 +1,3 @@
+---
+travis_decrypt_key: e99be923bbf1
+ansible_role_name: hosts

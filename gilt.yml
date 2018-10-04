@@ -12,5 +12,14 @@
       dst: ./
     - src: ansible/tox.ini
       dst: ./
-    - src: ansible/gitignore
+    - src: ansible/.gitignore
       dst: ./.gitignore
+    - src: ansible/render-template.py
+      dst: scripts/render-template.py
+    - src: ansible/README.md
+      dst: ./
+    - src: ansible/.travis.yml
+      dst: ./
+      post_commands:
+        - python scripts/render-template.py README.md
+        - python scripts/render-template.py .travis.yml
