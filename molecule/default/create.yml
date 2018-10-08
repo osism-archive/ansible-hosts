@@ -89,6 +89,7 @@
         server: "{{ nova.name }}"
         network: "{{ nova.floating_ip_pool }}"
         wait: yes
+        timeout: 360
       register: floating
       with_items: "{{ molecule_yml.platforms }}"
       async: 7200

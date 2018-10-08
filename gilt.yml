@@ -16,6 +16,8 @@
       dst: ./.gitignore
     - src: ansible/render-template.py
       dst: scripts/render-template.py
+    - src: ansible/main.yml
+      dst: meta/main.yml
     - src: ansible/README.md
       dst: ./
     - src: ansible/.travis.yml
@@ -23,3 +25,4 @@
       post_commands:
         - python scripts/render-template.py README.md
         - python scripts/render-template.py .travis.yml
+        - python scripts/render-template.py meta/main.yml
