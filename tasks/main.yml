@@ -13,7 +13,7 @@
     mode: 0644
     backup: "{{ hosts_file_backup }}"
   become: true
-  when: "'osism.hosts' not in hosts['content']|b64decode"
+  when: "'osism.hosts' not in hosts['content']|b64decode or hosts_file_reset|bool"
 
 - name: Add hosts
   blockinfile:
