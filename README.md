@@ -25,3 +25,9 @@ Author information
 ------------------
 
 This role was created by [Betacloud Solutions GmbH](https://betacloud-solutions.de).
+
+Notes
+-----
+
+**Warning** The first time the role is executed, the ``/etc/hosts`` file is completely overwritten.
+
