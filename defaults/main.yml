@@ -1,5 +1,15 @@
 ---
-hosts_file: /etc/hosts
-hosts_additional_entries: {}
-hosts_group_name: all
+##########################
+# generic
+
 management_interface: eth0
+
+##########################
+# role parameters
+
+hosts_group_name: all
+
+hosts_file: /etc/hosts
+hosts_file_backup: yes
+
+hosts_additional_entries: {}

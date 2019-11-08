@@ -11,6 +11,7 @@
     owner: root
     group: root
     mode: 0644
+    backup: "{{ hosts_file_backup }}"
   become: true
   when: "'osism.hosts' not in hosts['content']|b64decode"
 
