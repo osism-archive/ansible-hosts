@@ -2,5 +2,11 @@
 - name: Playbook for role testing
   hosts: all
 
+  vars:
+    hosts_group_name: ungrouped
+    hosts_additional_entries:
+      testing.osism.xyz: 127.0.1.1
+      foobar.osism.xyz: 127.0.1.2
+
   roles:
     - role: ansible-hosts

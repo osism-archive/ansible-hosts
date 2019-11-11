@@ -17,6 +17,9 @@ provisioner:
     group_vars:
       all:
         ansible_python_interpreter: /usr/bin/python3
+    host_vars:
+      $PLATFORM_NAME:
+        management_interface: ens3
 verifier:
   name: testinfra
   enabled: false
