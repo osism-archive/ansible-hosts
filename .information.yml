@@ -2,4 +2,4 @@
 ansible_role_name: hosts
 readme_note: |
   **Warning** The first time the role is executed, the ``/etc/hosts`` file is completely overwritten.
-travis_decrypt_key: e99be923bbf1
+travis_decrypt_key: e3f9eb2565cd
