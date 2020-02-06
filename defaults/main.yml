@@ -8,6 +8,8 @@ management_interface: eth0
 # role parameters
 
 hosts_group_name: all
+
+# valid values: [block, local, template]
 hosts_type: block
 
 hosts_file: /etc/hosts
