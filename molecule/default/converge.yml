@@ -1,8 +1,35 @@
 ---
-- name: Playbook for role testing
+- name: Playbook for role testing - block
   hosts: all
 
   vars:
+    hosts_type: block
+    hosts_group_name: ungrouped
+    hosts_additional_entries:
+      testing.osism.xyz: 127.0.1.1
+      foobar.osism.xyz: 127.0.1.2
+
+  roles:
+    - role: ansible-hosts
+
+- name: Playbook for role testing - local
+  hosts: all
+
+  vars:
+    hosts_type: local
+    hosts_group_name: ungrouped
+    hosts_additional_entries:
+      testing.osism.xyz: 127.0.1.1
+      foobar.osism.xyz: 127.0.1.2
+
+  roles:
+    - role: ansible-hosts
+
+- name: Playbook for role testing - template
+  hosts: all
+
+  vars:
+    hosts_type: template
     hosts_group_name: ungrouped
     hosts_additional_entries:
       testing.osism.xyz: 127.0.1.1
