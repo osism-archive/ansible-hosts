@@ -6,6 +6,7 @@
   register: hosts_tempfile
   delegate_to: localhost
   run_once: true
+  tags: molecule-idempotence-notest
 
 - name: Generate temporary /etc/hosts file
   template:
@@ -13,6 +14,7 @@
     dest: "{{ hosts_tempfile.path }}"
   delegate_to: localhost
   run_once: true
+  tags: molecule-idempotence-notest
 
 - name: Copy /etc/hosts file
   copy:
@@ -23,6 +25,7 @@
     mode: 0644
     backup: "{{ hosts_file_backup }}"
   become: true
+  tags: molecule-idempotence-notest
 
 - name: Delete temporary file
   file:
@@ -30,3 +33,4 @@
     state: absent
   delegate_to: localhost
   run_once: true
+  tags: molecule-idempotence-notest
