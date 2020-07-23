@@ -22,7 +22,7 @@
       {{ hostvars[item]['ansible_' + hostvars[item]['management_interface']]['ipv4']['address'] }} {{ item }} {{ item.split('.')[0] }}
     marker: "# {mark} osism.hosts managed block {{ item }}"
   become: true
-  with_items: "{{ groups[hosts_group_name]|default([]) }}"
+  loop: "{{ groups[hosts_group_name]|default([]) }}"
   when:
     - hostvars[item] is defined
     - hostvars[item]['management_interface'] is defined
@@ -32,7 +32,7 @@
   blockinfile:
     dest: "{{ hosts_file }}"
     block: |
-      {{ item.value }} {{ item.key }} {{ item.key.split('.')[0] }}
-    marker: "# {mark} osism.hosts managed block {{ item.key }}"
+      {{ item.1 }} {{ item.0 }} {{ item.0.split('.')[0] }}
+    marker: "# {mark} osism.hosts managed block {{ item.0 }}"
   become: true
-  with_dict: "{{ hosts_additional_entries }}"
+  loop: "{{ hosts_additional_entries|dictsort }}"
